@@ -30,7 +30,7 @@ export const videos = [
     rowSpan: 1,
   },
   {
-    src: './video/6.mp4',
+    src: './video/6-1.mp4',
     title: 'Video 4',
     colSpan: 3,
     rowSpan: 1,

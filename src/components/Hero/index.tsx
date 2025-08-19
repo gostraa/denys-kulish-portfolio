@@ -18,7 +18,7 @@ const Hero = () => {
         playsInline
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 5, ease: 'easeOut' }}
+        transition={{ duration: 6, ease: 'easeOut' }}
         style={{
           width: '100%',
           height: '100%',
@@ -36,14 +36,15 @@ const Hero = () => {
         transform="translate(-50%, -50%)"
         textAlign="center"
         zIndex={1}
+        w="full"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut', delay: 1 }}
+          transition={{ duration: 4, ease: 'easeOut', delay: 2 }}
         >
           <Text
-            fontSize={{ base: '2xl', md: '4xl', lg: '6xl' }}
+            fontSize={{ base: 'xl', md: '3xl', lg: '5xl' }}
             fontWeight="bold"
             color="white"
             textShadow="0px 2px 12px rgba(0,0,0,0.6)"

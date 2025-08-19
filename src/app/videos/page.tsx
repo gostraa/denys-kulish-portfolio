@@ -1,7 +1,6 @@
-import React from 'react';
+import Gallery from '@/components/Gallery';
+import { videos } from '@/data/videos';
 
-const VideosPage = () => {
-  return <div>VideosPage</div>;
-};
-
-export default VideosPage;
+export default function VideosPage() {
+  return <Gallery data={videos} />;
+}

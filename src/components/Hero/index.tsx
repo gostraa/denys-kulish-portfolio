@@ -10,19 +10,26 @@ const Hero = () => {
       position="relative"
       overflow="hidden"
     >
-      <Box
-        objectFit="cover"
-        w="100%"
-        h="100%"
-        position="absolute"
-        top="0"
-        left="0"
-      >
-        <video src="/video/hero.mp4" autoPlay loop muted playsInline></video>
-      </Box>
+      <motion.video
+        src="/video/hero.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 5, ease: 'easeOut' }}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        }}
+      />
 
       <Box
-        w="full"
         position="absolute"
         top="50%"
         left="50%"
@@ -31,12 +38,12 @@ const Hero = () => {
         zIndex={1}
       >
         <motion.div
-          initial={{ opacity: 0, y: 70 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 5, ease: 'easeOut' }}
+          transition={{ duration: 1.2, ease: 'easeOut', delay: 1 }}
         >
           <Text
-            fontSize={{ base: 'sm', md: '3xl', lg: '5xl' }}
+            fontSize={{ base: '2xl', md: '4xl', lg: '6xl' }}
             fontWeight="bold"
             color="white"
             textShadow="0px 2px 12px rgba(0,0,0,0.6)"

@@ -3,15 +3,19 @@ import {
   defaultConfig,
   defineConfig,
   mergeConfigs,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import { b } from 'framer-motion/client';
 
 export const theme = defineConfig({
-  cssVarsPrefix: "portfolio",
+  cssVarsPrefix: 'portfolio',
   globalCss: {
-    "& svg ": {
-      width: "unset !important",
-      height: "unset !important",
-      flexShrink: "unset !important",
+    '& svg ': {
+      width: 'unset !important',
+      height: 'unset !important',
+      flexShrink: 'unset !important',
+    },
+    body: {
+      fontFamily: 'var(--font-geist-sans)',
     },
   },
 
@@ -19,14 +23,14 @@ export const theme = defineConfig({
     tokens: {
       colors: {
         white: {
-          10: { value: "#fff" },
+          10: { value: '#fff' },
         },
         gray: {
-          10: { value: "#bab8be" },
+          10: { value: '#bab8be' },
         },
         dark: {
-          100: { value: "#2c243b" },
-          130: { value: "#000000" },
+          100: { value: '#2c243b' },
+          130: { value: '#000000' },
         },
       },
     },

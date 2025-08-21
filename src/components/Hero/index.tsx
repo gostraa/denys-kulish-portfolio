@@ -40,8 +40,16 @@ const Hero = () => {
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 4, ease: 'easeOut', delay: 2 }}
+          animate={{
+            opacity: [0, 1, 1, 0],
+            y: [30, 0, 0, -30],
+          }}
+          transition={{
+            delay: 2,
+            duration: 6,
+            ease: 'easeOut',
+            times: [0, 0.25, 0.75, 1],
+          }}
         >
           <Text
             fontSize={{ base: 'xl', md: '3xl', lg: '5xl' }}

@@ -8,18 +8,13 @@ export default function Home() {
       <Hero />
       <Text
         mt={{ base: 4, md: 8 }}
-        mx={{ base: 4, md: 8 }}
-        px={{ base: 4, md: 6 }}
-        fontSize={{ base: 'md', md: 'lg' }}
+        mx={{ base: 0, md: 8 }}
+        px={{ base: 0, md: 6 }}
+        fontSize={{ base: 'sm', sm: 'md', md: 'xl' }}
         textAlign="center"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa deleniti
-        delectus sapiente dicta eligendi, labore omnis harum modi qui,
-        repellendus maxime accusamus voluptas atque sunt vel error expedita
-        facere laborum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Culpa deleniti delectus sapiente dicta eligendi, labore omnis harum modi
-        qui, repellendus maxime accusamus voluptas atque sunt vel error expedita
-        facere laborum!
+        Professional videography for brands and events. <br /> Turning your
+        ideas into powerful visual stories.
       </Text>
     </Flex>
   );

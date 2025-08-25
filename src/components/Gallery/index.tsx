@@ -122,6 +122,7 @@ const Gallery = ({ data }: GalleryProps) => {
             onClick={() => setCurrentFile(null)}
           >
             <video
+              muted
               src={currentFile}
               controls
               autoPlay

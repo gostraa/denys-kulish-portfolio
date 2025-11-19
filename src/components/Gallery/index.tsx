@@ -18,7 +18,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
   const [mounted, setMounted] = useState(false);
   const [page, setPage] = useState(1);
 
-  const perPage = 4;
+  const perPage = type === 'video' ? 4 : 6;
   const visibleData = data.slice(0, page * perPage);
 
   useEffect(() => {
@@ -38,8 +38,14 @@ const Gallery = ({ data, type }: GalleryProps) => {
   }
 
   return (
-    <Flex direction="column" gap={20} p={6} pb={6} minH="100vh">
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
+    <Flex direction="column" gap={10} p={6} pb={6} minH="100vh">
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{
+          350: 1,
+          750: 2,
+          900: type === 'video' ? 2 : 3,
+        }}
+      >
         <Masonry gutter="16px">
           {visibleData.map((file, idx) => (
             <Box
@@ -73,7 +79,13 @@ const Gallery = ({ data, type }: GalleryProps) => {
 
       {page * perPage < data.length && (
         <Center>
-          <Button onClick={handleLoadMore}>Load More</Button>
+          <Button
+            onClick={handleLoadMore}
+            w={{ base: '180px', md: '220px' }}
+            height={{ base: '40px', md: '50px' }}
+          >
+            Load More
+          </Button>
         </Center>
       )}
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 //@ts-expect-error todo: fix types
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { Box, Portal, Spinner, Center, Button } from '@chakra-ui/react';
+import { Box, Portal, Spinner, Center, Button, Flex } from '@chakra-ui/react';
 import { GalleryFile } from '@/types';
 import Image from 'next/image';
 import LazyVideo from '../LazyVideo';
@@ -18,7 +18,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
   const [mounted, setMounted] = useState(false);
   const [page, setPage] = useState(1);
 
-  const perPage = 9;
+  const perPage = 4;
   const visibleData = data.slice(0, page * perPage);
 
   useEffect(() => {
@@ -38,11 +38,8 @@ const Gallery = ({ data, type }: GalleryProps) => {
   }
 
   return (
-    <Box p={4} pb={6}>
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{ 350: 1, 750: 2, 1200: 3 }}
-        gutterBreakpoints={{ 350: '12px', 750: '16px', 900: '24px' }}
-      >
+    <Flex direction="column" gap={20} p={6} pb={6} minH="100vh">
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
         <Masonry gutter="16px">
           {visibleData.map((file, idx) => (
             <Box
@@ -53,7 +50,6 @@ const Gallery = ({ data, type }: GalleryProps) => {
               boxShadow="md"
               position="relative"
               onClick={() => setCurrentFile(file)}
-              _hover={{ transform: 'scale(1.02)', transition: '0.2s' }}
             >
               {type === 'video' ? (
                 <LazyVideo src={file.preview || file.src} />
@@ -76,7 +72,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
       </ResponsiveMasonry>
 
       {page * perPage < data.length && (
-        <Center mt={6}>
+        <Center>
           <Button onClick={handleLoadMore}>Load More</Button>
         </Center>
       )}
@@ -122,7 +118,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
           </Box>
         </Portal>
       )}
-    </Box>
+    </Flex>
   );
 };
 

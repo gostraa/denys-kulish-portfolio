@@ -1,6 +1,6 @@
 export const photos = [
   {
-    src: '/images/1.jpg',
+    src: '/images/111.jpg',
     title: 'Image 1',
   },
   {

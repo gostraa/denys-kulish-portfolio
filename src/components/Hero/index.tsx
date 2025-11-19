@@ -2,6 +2,9 @@ import { Box, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+const MotionDiv = motion.div;
+const MotionVideo = motion('video');
+
 const Hero = () => {
   return (
     <Box
@@ -10,7 +13,7 @@ const Hero = () => {
       position="relative"
       overflow="hidden"
     >
-      <motion.video
+      <MotionVideo
         src="/video/hero.mp4"
         autoPlay
         loop
@@ -19,14 +22,18 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 6, ease: 'easeOut' }}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        }}
+        width="full"
+        height="full"
+      />
+
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        w="full"
+        h="full"
+        bg="rgba(0,0,0,0.3)"
+        zIndex={0}
       />
 
       <Box
@@ -38,12 +45,9 @@ const Hero = () => {
         zIndex={1}
         w="full"
       >
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 30 }}
-          animate={{
-            opacity: [0, 1, 1, 0],
-            y: [30, 0, 0, -30],
-          }}
+          animate={{ opacity: [0, 1, 1, 0], y: [30, 0, 0, -30] }}
           transition={{
             delay: 2,
             duration: 6,
@@ -59,7 +63,7 @@ const Hero = () => {
           >
             See the unseen. From the sky.
           </Text>
-        </motion.div>
+        </MotionDiv>
       </Box>
     </Box>
   );

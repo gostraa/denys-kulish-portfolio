@@ -1,58 +1,20 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 //@ts-expect-error todo: fix types
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import {
-  Box,
-  Portal,
-  IconButton,
-  Spinner,
-  Center,
-  Button,
-} from '@chakra-ui/react';
-import CloseIcon from '../icons/CloseIcon';
+import { Box, Portal, Spinner, Center, Button } from '@chakra-ui/react';
 import { GalleryFile } from '@/types';
+import Image from 'next/image';
+import LazyVideo from '../LazyVideo';
 
 type GalleryProps = {
   data: GalleryFile[];
+  type: 'video' | 'image';
 };
 
-const LazyVideo = ({ src }: { src: string }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.25 },
-    );
-
-    if (videoRef.current) observer.observe(videoRef.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <video
-      ref={videoRef}
-      src={isVisible ? src : undefined}
-      muted
-      loop
-      playsInline
-      autoPlay={isVisible}
-      style={{ width: '100%', display: 'block', borderRadius: '8px' }}
-    />
-  );
-};
-
-const Gallery = ({ data }: GalleryProps) => {
-  const [currentFile, setCurrentFile] = useState<string | null>(null);
+const Gallery = ({ data, type }: GalleryProps) => {
+  const [currentFile, setCurrentFile] = useState<GalleryFile | null>(null);
   const [mounted, setMounted] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -76,7 +38,7 @@ const Gallery = ({ data }: GalleryProps) => {
   }
 
   return (
-    <Box p={4}>
+    <Box p={4} pb={6}>
       <ResponsiveMasonry
         columnsCountBreakPoints={{ 350: 1, 750: 2, 1200: 3 }}
         gutterBreakpoints={{ 350: '12px', 750: '16px', 900: '24px' }}
@@ -90,17 +52,31 @@ const Gallery = ({ data }: GalleryProps) => {
               overflow="hidden"
               boxShadow="md"
               position="relative"
-              onClick={() => setCurrentFile(file.src)}
+              onClick={() => setCurrentFile(file)}
               _hover={{ transform: 'scale(1.02)', transition: '0.2s' }}
             >
-              <LazyVideo src={file.src} />
+              {type === 'video' ? (
+                <LazyVideo src={file.preview || file.src} />
+              ) : (
+                <Image
+                  src={file.src}
+                  alt={file.title}
+                  width={600}
+                  height={400}
+                  style={{
+                    width: '100%',
+                    display: 'block',
+                    borderRadius: '8px',
+                  }}
+                />
+              )}
             </Box>
           ))}
         </Masonry>
       </ResponsiveMasonry>
 
       {page * perPage < data.length && (
-        <Center mt={4}>
+        <Center mt={6}>
           <Button onClick={handleLoadMore}>Load More</Button>
         </Center>
       )}
@@ -121,14 +97,28 @@ const Gallery = ({ data }: GalleryProps) => {
             zIndex={9999}
             onClick={() => setCurrentFile(null)}
           >
-            <video
-              muted
-              src={currentFile}
-              controls
-              autoPlay
-              playsInline
-              style={{ maxWidth: '90%', maxHeight: '80%', borderRadius: '8px' }}
-            />
+            {type === 'video' ? (
+              <video
+                muted
+                src={currentFile.src}
+                controls
+                autoPlay
+                playsInline
+                style={{
+                  maxWidth: '90%',
+                  maxHeight: '80%',
+                  borderRadius: '8px',
+                }}
+              />
+            ) : (
+              <Image
+                src={currentFile.src}
+                alt="portfolio image"
+                width={1000}
+                height={800}
+                style={{ width: '45%', display: 'block', borderRadius: '8px' }}
+              />
+            )}
           </Box>
         </Portal>
       )}

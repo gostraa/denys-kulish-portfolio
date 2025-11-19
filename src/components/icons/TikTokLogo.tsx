@@ -7,8 +7,8 @@ interface TikTokLogoProps extends React.SVGProps<SVGSVGElement> {
 }
 
 const TikTokLogo: React.FC<TikTokLogoProps> = ({
-  width = 40,
-  height = 40,
+  width = 60,
+  height = 60,
   fill = '#bc5418',
   ...props
 }) => {

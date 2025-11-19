@@ -1,4 +1,3 @@
-import ContactForm from '@/components/ContactForm';
 import InstagramLogo from '@/components/icons/InstagramLogo';
 import TikTokLogo from '@/components/icons/TikTokLogo';
 import { Flex, Text } from '@chakra-ui/react';
@@ -8,7 +7,7 @@ const ContactPage = () => {
   return (
     <Flex flexDir="column" gap={4} height="100vh" p={6} align="center" pt={12}>
       <Flex flexDir="column" align="center" justify="center" gap={4}>
-        <Text fontSize={{ base: 'sm', sm: 'md' }}>You can reach me here</Text>
+        <Text fontSize={{ base: 'sm', sm: 'lg' }}>You can reach me here</Text>
         <Flex gap={6}>
           <a
             href="https://www.instagram.com/denysksh_fpv/"
@@ -26,11 +25,11 @@ const ContactPage = () => {
             <TikTokLogo />
           </a>
         </Flex>
-        <Text fontSize={{ base: 'sm', sm: 'md' }}>
-          Or send me an email using the form below
+        <Text fontSize={{ base: 'sm', sm: 'lg' }} textAlign="center">
+          I’m excited about the idea of collaborating and would love to discuss
+          it further!
         </Text>
       </Flex>
-      <ContactForm />
     </Flex>
   );
 };

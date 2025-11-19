@@ -124,7 +124,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
                 alt="portfolio image"
                 width={1000}
                 height={800}
-                style={{ width: '45%', display: 'block', borderRadius: '8px' }}
+                style={{ width: '85%', display: 'block', borderRadius: '8px' }}
               />
             )}
           </Box>

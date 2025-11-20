@@ -1,5 +1,5 @@
 export type GalleryFile = {
-  preview?: string;
+  preview: string;
   src: string;
   title: string;
 };

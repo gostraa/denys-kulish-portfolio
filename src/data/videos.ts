@@ -1,8 +1,18 @@
 export const videos = [
   {
+    preview: './video/preview/14.mp4',
+    src: './video/14.mp4',
+    title: 'Video 14',
+  },
+  {
     preview: './video/preview/1.mp4',
     src: './video/1.mp4',
     title: 'Video 1',
+  },
+  {
+    preview: './video/preview/15.mp4',
+    src: './video/15.mp4',
+    title: 'Video 15',
   },
   {
     preview: './video/preview/2.mp4',
@@ -25,6 +35,11 @@ export const videos = [
     title: 'Video 5',
   },
   {
+    preview: './video/preview/13.mp4',
+    src: './video/13.mp4',
+    title: 'Video 13',
+  },
+  {
     preview: './video/preview/6.mp4',
     src: './video/6.mp4',
     title: 'Video 6',
@@ -39,11 +54,7 @@ export const videos = [
     src: './video/8.mp4',
     title: 'Video 8',
   },
-  {
-    preview: './video/preview/9.mp4',
-    src: './video/9.mp4',
-    title: 'Video 9',
-  },
+
   {
     preview: './video/preview/10.mp4',
     src: './video/10.mp4',
@@ -60,15 +71,8 @@ export const videos = [
     title: 'Video 12',
   },
   {
-    src: './video/13.mp4',
-    title: 'Video 13',
-  },
-  {
-    src: './video/14.mp4',
-    title: 'Video 14',
-  },
-  {
-    src: './video/15.mp4',
-    title: 'Video 15',
+    preview: './video/preview/9.mp4',
+    src: './video/9.mp4',
+    title: 'Video 9',
   },
 ];

@@ -1,9 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-//@ts-expect-error todo: fix types
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { Box, Portal, Spinner, Center, Button, Flex } from '@chakra-ui/react';
+
+import {
+  Box,
+  Portal,
+  Spinner,
+  Center,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+} from '@chakra-ui/react';
 import { GalleryFile } from '@/types';
 import Image from 'next/image';
 import LazyVideo from '../LazyVideo';
@@ -13,12 +21,20 @@ type GalleryProps = {
   type: 'video' | 'image';
 };
 
+const responsiveGridOptions = {
+  base: '1fr',
+  sm: 'repeat(2,  1fr)',
+  md: 'repeat(3,  220px)',
+  lg: 'repeat(3, 300px)',
+  xl: 'repeat(4, 1fr)',
+};
+
 const Gallery = ({ data, type }: GalleryProps) => {
   const [currentFile, setCurrentFile] = useState<GalleryFile | null>(null);
   const [mounted, setMounted] = useState(false);
   const [page, setPage] = useState(1);
 
-  const perPage = type === 'video' ? 4 : 6;
+  const perPage = 9;
   const visibleData = data.slice(0, page * perPage);
 
   useEffect(() => {
@@ -38,51 +54,34 @@ const Gallery = ({ data, type }: GalleryProps) => {
   }
 
   return (
-    <Flex direction="column" gap={10} p={6} pb={6} minH="100vh">
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{
-          350: 1,
-          750: 2,
-          900: type === 'video' ? 2 : 3,
-        }}
-      >
-        <Masonry gutter="16px">
-          {visibleData.map((file, idx) => (
-            <Box
-              key={idx}
-              cursor="pointer"
-              borderRadius="md"
-              overflow="hidden"
-              boxShadow="md"
-              position="relative"
-              onClick={() => setCurrentFile(file)}
-            >
-              {type === 'video' ? (
-                <LazyVideo src={file.preview || file.src} />
-              ) : (
-                <Image
-                  src={file.src}
-                  alt={file.title}
-                  width={600}
-                  height={400}
-                  style={{
-                    width: '100%',
-                    display: 'block',
-                    borderRadius: '8px',
-                  }}
-                />
-              )}
-            </Box>
-          ))}
-        </Masonry>
-      </ResponsiveMasonry>
+    <Flex direction="column" align="center" gap={10} p={4} pb={6}>
+      <Grid templateColumns={responsiveGridOptions} maxW="1440px" gap={6}>
+        {visibleData.map((file, idx) => (
+          <GridItem
+            key={idx}
+            w="full"
+            display="flex"
+            alignItems="center"
+            cursor="pointer"
+            borderRadius="md"
+            position="relative"
+            onClick={() => setCurrentFile(file)}
+          >
+            {type === 'video' ? (
+              <LazyVideo src={file.preview} />
+            ) : (
+              <Image src={file.src} alt={file.title} width={600} height={400} />
+            )}
+          </GridItem>
+        ))}
+      </Grid>
 
       {page * perPage < data.length && (
         <Center>
           <Button
             onClick={handleLoadMore}
-            w={{ base: '180px', md: '220px' }}
-            height={{ base: '40px', md: '50px' }}
+            w={{ base: '180px', lg: '220px' }}
+            height={{ base: '40px', lg: '50px' }}
           >
             Load More
           </Button>

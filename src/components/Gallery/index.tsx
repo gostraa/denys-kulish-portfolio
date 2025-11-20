@@ -68,7 +68,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
             onClick={() => setCurrentFile(file)}
           >
             {type === 'video' ? (
-              <LazyVideo src={file.preview} />
+              <LazyVideo src={file.preview || file.src} />
             ) : (
               <Image src={file.src} alt={file.title} width={600} height={400} />
             )}

@@ -28,12 +28,6 @@ const LazyVideo = ({ src }: { src: string }) => {
       loop
       playsInline
       autoPlay={isVisible}
-      // style={{
-      //   width: '100%',
-      //   height: '100%',
-      //   display: 'block',
-      //   borderRadius: '8px',
-      // }}
     />
   );
 };

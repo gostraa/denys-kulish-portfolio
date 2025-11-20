@@ -101,7 +101,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
             display="flex"
             alignItems="center"
             justifyContent="center"
-            zIndex={9999}
+            zIndex={999}
             onClick={() => setCurrentFile(null)}
           >
             {type === 'video' ? (
@@ -111,6 +111,7 @@ const Gallery = ({ data, type }: GalleryProps) => {
                 controls
                 autoPlay
                 playsInline
+                onClick={(e) => e.stopPropagation()}
                 style={{
                   maxWidth: '90%',
                   maxHeight: '80%',

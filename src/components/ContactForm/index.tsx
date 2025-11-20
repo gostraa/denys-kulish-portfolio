@@ -25,23 +25,17 @@ const ContactForm = () => {
   const onSubmit = async () => {
     setErrorMsg('');
     setSuccessMsg('');
+
     try {
       if (!formRef.current) {
         setErrorMsg('Form reference is not available.');
         return;
       }
-      const response = await sendMailLetter(formRef.current);
-
-      if (response.message === 'success') {
-        reset();
-        setSuccessMsg('Thank you!🌟 I’ll respond as soon as possible.');
-      } else {
-        setErrorMsg('Something went wrong. Please try again later.');
-      }
+      await sendMailLetter(formRef.current);
+      reset();
+      setSuccessMsg('Thank you!🌟 I’ll respond as soon as possible.');
     } catch (error) {
-      setErrorMsg(
-        'Failed to send message. Please check your connection and try again.',
-      );
+      setErrorMsg('Something went wrong. Please try again later.');
       console.error('Error sending email:', error);
     }
   };

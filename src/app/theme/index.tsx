@@ -4,7 +4,6 @@ import {
   defineConfig,
   mergeConfigs,
 } from '@chakra-ui/react';
-import { b } from 'framer-motion/client';
 
 export const theme = defineConfig({
   cssVarsPrefix: 'portfolio',
